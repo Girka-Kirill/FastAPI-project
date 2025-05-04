@@ -1,0 +1,39 @@
+Запуск сервера:
+uvicorn app.main:app
+
+Клиентские команды (из другой консоли на том же устройстве)
+Регистрация пользователя:
+http POST http://localhost:8000/users/ \
+    email="dev@example.com" \
+    password="qwerty123" \
+    full_name="Developer"
+
+Получение токена:
+http --form POST http://localhost:8000/token \
+    email="dev@example.com" \
+    password="qwerty123" \   
+    grant_type="password" \
+    scope=""
+
+Сохранение токена (для удобства вызова следующих эндпоинтов):
+TOKEN="ваш_токен_из_ответа"
+
+Создание задач:
+http POST http://localhost:8000/tasks/ \
+    "Authorization: Bearer $TOKEN" \
+    title="Fix database connection" \
+    priority=3
+
+http POST http://localhost:8000/tasks/ \
+    "Authorization: Bearer $TOKEN" \
+    title="Write documentation" \
+    priority=1
+
+http POST http://localhost:8000/tasks/ \
+    "Authorization: Bearer $TOKEN" \
+    title="Optimize algorithm" \
+    priority=5
+
+Получение списка задач
+http GET http://localhost:8000/tasks/ \
+    "Authorization: Bearer $TOKEN"
