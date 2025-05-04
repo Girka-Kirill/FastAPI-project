@@ -1,3 +1,7 @@
+"""
+Инициализация пакета
+"""
+
 from .models import User, Task
 from .schemas import *
 from .crud import *

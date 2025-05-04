@@ -1,7 +1,11 @@
+"""
+Подключение к БД и создание сессий
+"""
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
+
 
 # Создаем директорию для базы данных, если ее нет
 os.makedirs("databases", exist_ok=True)
@@ -16,6 +20,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def get_db():
+    """
+    Получение доступа к используемой базе данных
+    """
     db = SessionLocal()
     try:
         yield db
