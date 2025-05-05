@@ -11,7 +11,7 @@ http POST http://localhost:8000/users/ \
 Получение токена:
 http --form POST http://localhost:8000/token \
     email="dev@example.com" \
-    password="qwerty123" \   
+    password="qwerty123" \
     grant_type="password" \
     scope=""
 
@@ -37,3 +37,12 @@ http POST http://localhost:8000/tasks/ \
 Получение списка задач
 http GET http://localhost:8000/tasks/ \
     "Authorization: Bearer $TOKEN"
+
+Редактирование задач
+http PUT http://localhost:8000/tasks/2 \
+    "Authorization: Bearer $TOKEN" \
+    title="Upload documentation" \
+    description="Updated name" \
+    status="in_progress" \
+    priority=2 \
+    due_date="2023-12-31T23:59:59"
